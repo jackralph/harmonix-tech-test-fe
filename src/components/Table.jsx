@@ -4,7 +4,7 @@ import Results from "./Results";
 const Table = () => {
   return (
     <div>
-      <table class='table'>
+      <table className='table'>
         <thead>
           <tr>
             <th scope='col'>First word</th>
