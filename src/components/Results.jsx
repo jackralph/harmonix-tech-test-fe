@@ -20,6 +20,7 @@ class Results extends Component {
             _id,
             firstWord,
             secondWord,
+            typeOfTest,
             anagram,
             firstWordPalindrome,
             secondWordPalindrome,
@@ -29,16 +30,20 @@ class Results extends Component {
             <tr key={_id}>
               <td>{firstWord}</td>
               <td>{secondWord}</td>
-              <td>
-                {anagram
-                  ? "These words are anagrams of each other"
-                  : "These words are NOT anagrams of each other"}
-              </td>
-              <td>
-                {firstWordPalindrome && `${firstWord} is a palindrome`}
-                <br></br>
-                {secondWordPalindrome && `${secondWord} is a palindrome`}
-              </td>
+              <td>{typeOfTest}</td>
+              {typeOfTest === "palindrome" ? (
+                <td>
+                  {" "}
+                  {firstWordPalindrome && secondWordPalindrome
+                    ? `${firstWord} AND ${secondWord} are both palindromes`
+                    : (firstWordPalindrome && `${firstWord} is a palindrome`) ||
+                      (secondWordPalindrome && `${secondWord} is a palindrome`)}
+                </td>
+              ) : (
+                <td>
+                  {anagram && `${firstWord} is an anagram of ${secondWord}`}
+                </td>
+              )}
               <td>{`${timeToComplete} seconds`}</td>
             </tr>
           );

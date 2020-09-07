@@ -6,8 +6,8 @@ const TableHead = () => {
       <tr>
         <th scope='col'>First word</th>
         <th scope='col'>Second word</th>
-        <th scope='col'>Anagram?</th>
-        <th scope='col'>Palindrome?</th>
+        <th scope='col'>Type of test</th>
+        <th scope='col'>Test results</th>
         <th scope='col'>Time to complete</th>
       </tr>
     </thead>
