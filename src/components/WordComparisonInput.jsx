@@ -11,8 +11,13 @@ class WordComparisonInput extends Component {
     const { firstWord, secondWord } = this.state;
     if (firstWord.length === 0 || secondWord.length === 0) {
       alert("Both fields are required for comparison");
-    } else if (/\d/.test(firstWord) || /\d/.test(secondWord)) {
-      alert("Numbers are not permitted");
+    } else if (
+      !/^[A-Za-z]+$/.test(firstWord) ||
+      !/^[A-Za-z]+$/.test(secondWord)
+    ) {
+      alert(
+        "Only single words are permitted, no spaces, numbers or special characters are allowed"
+      );
     } else {
       api.newComparison(firstWord, secondWord);
       this.setState({ firstWord: "", secondWord: "" });
