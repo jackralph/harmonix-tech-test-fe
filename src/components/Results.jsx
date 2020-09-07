@@ -8,30 +8,38 @@ class Results extends Component {
   };
 
   render() {
-    if (this.state.isLoading) return <h1>Loading... </h1>;
-    this.state.results.wordComparisons.map((result) => {
-      console.log(result);
-    });
+    const { isLoading } = this.state;
+    const { wordComparisons } = this.state.results;
+
+    if (isLoading) return <h1>Loading... </h1>;
+
     return (
       <tbody>
-        {this.state.results.wordComparisons.map((result) => {
+        {wordComparisons.map((result) => {
+          const {
+            _id,
+            firstWord,
+            secondWord,
+            anagram,
+            firstWordPalindrome,
+            secondWordPalindrome,
+            timeToComplete,
+          } = result;
           return (
-            <tr>
-              <td>{result.firstWord}</td>
-              <td>{result.secondWord}</td>
+            <tr id={_id}>
+              <td>{firstWord}</td>
+              <td>{secondWord}</td>
               <td>
-                {result.anagram
+                {anagram
                   ? "These words are anagrams of each other"
-                  : "These words are not anagrams of each other"}
+                  : "These words are NOT anagrams of each other"}
               </td>
               <td>
-                {result.firstWordPalindrome &&
-                  `${result.firstWord} is a palindrome`}
-                /
-                {result.firstWordPalindrome &&
-                  `${result.firstWord} is a palindrome`}
+                {firstWordPalindrome && `${firstWord} is a palindrome`}
+                <br></br>
+                {secondWordPalindrome && `${secondWord} is a palindrome`}
               </td>
-              <td></td>
+              <td>{`${timeToComplete} seconds`}</td>
             </tr>
           );
         })}
@@ -42,7 +50,6 @@ class Results extends Component {
   componentDidMount() {
     api.getResults().then((results) => {
       this.setState({ results, isLoading: false });
-      console.log(this.state);
     });
   }
 }
