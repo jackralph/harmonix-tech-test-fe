@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Results from "./Results";
+import TableHead from "./TableHead";
+import OrderByCheckbox from "./OrderByCheckbox";
 
 class Table extends Component {
   state = {
@@ -11,30 +13,13 @@ class Table extends Component {
   };
 
   render() {
+    const { orderDesc } = this.state;
     return (
       <div>
-        <div class='form-check'>
-          <input
-            class='form-check-input'
-            type='checkbox'
-            value={this.state.order}
-            onChange={this.changeOrder}
-          />
-          <label class='form-check-label'>
-            Order descending by Time to complete
-          </label>
-        </div>
+        <OrderByCheckbox changeOrder={this.changeOrder} orderDesc={orderDesc} />
         <table className='table'>
-          <thead>
-            <tr>
-              <th scope='col'>First word</th>
-              <th scope='col'>Second word</th>
-              <th scope='col'>Anagram?</th>
-              <th scope='col'>Palindrome?</th>
-              <th scope='col'>Time to complete</th>
-            </tr>
-          </thead>
-          <Results orderDesc={this.state.orderDesc} />
+          <TableHead />
+          <Results orderDesc={orderDesc} />
         </table>
       </div>
     );

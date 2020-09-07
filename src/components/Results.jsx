@@ -48,7 +48,8 @@ class Results extends Component {
   }
 
   componentDidMount() {
-    api.getResults().then((results) => {
+    const { orderDesc } = this.props;
+    api.getResults(orderDesc).then((results) => {
       this.setState({ results, isLoading: false });
     });
   }
