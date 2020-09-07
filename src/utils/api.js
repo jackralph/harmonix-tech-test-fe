@@ -15,3 +15,10 @@ export const getResults = (orderDesc) => {
       return response.data;
     });
 };
+
+export const newComparison = (firstWord, secondWord) => {
+  return axios.post("https://fierce-beyond-25336.herokuapp.com/", {
+    firstWord,
+    secondWord,
+  });
+};
