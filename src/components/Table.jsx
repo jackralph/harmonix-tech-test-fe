@@ -7,21 +7,34 @@ import WordComparisonInput from "./WordComparisonInput";
 class Table extends Component {
   state = {
     orderDesc: true,
+    currentFirstWord: "",
+    currentSecondWord: "",
   };
 
   changeOrder = () => {
     this.setState({ orderDesc: !this.state.orderDesc });
   };
 
+  newSubmission = (firstWord, secondWord) => {
+    this.setState({
+      currentFirstWord: firstWord,
+      currentSecondWord: secondWord,
+    });
+  };
+
   render() {
-    const { orderDesc } = this.state;
+    const { orderDesc, currentFirstWord, currentSecondWord } = this.state;
     return (
       <div>
         <OrderByCheckbox changeOrder={this.changeOrder} orderDesc={orderDesc} />
-        <WordComparisonInput />
+        <WordComparisonInput newSubmission={this.newSubmission} />
         <table className='table'>
           <TableHead />
-          <Results orderDesc={orderDesc} />
+          <Results
+            orderDesc={orderDesc}
+            currentFirstWord={currentFirstWord}
+            currentSecondWord={currentSecondWord}
+          />
         </table>
       </div>
     );

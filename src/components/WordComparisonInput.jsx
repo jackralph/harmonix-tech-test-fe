@@ -9,6 +9,7 @@ class WordComparisonInput extends Component {
 
   handleSubmit = () => {
     const { firstWord, secondWord } = this.state;
+    const { newSubmission } = this.props;
     if (firstWord.length === 0 || secondWord.length === 0) {
       alert("Both fields are required for comparison");
     } else if (
@@ -19,8 +20,10 @@ class WordComparisonInput extends Component {
         "Only single words are permitted, no spaces, numbers or special characters are allowed"
       );
     } else {
-      api.newComparison(firstWord, secondWord);
-      this.setState({ firstWord: "", secondWord: "" });
+      api.newComparison(firstWord, secondWord).then(() => {
+        newSubmission(firstWord, secondWord);
+        this.setState({ firstWord: "", secondWord: "" });
+      });
     }
   };
 

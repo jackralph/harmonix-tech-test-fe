@@ -56,7 +56,7 @@ class Results extends Component {
 
   componentDidUpdate(previousProps) {
     const { orderDesc } = this.props;
-    if (orderDesc !== previousProps.orderDesc) {
+    if (this.props !== previousProps) {
       api.getResults(orderDesc).then((results) => {
         this.setState({ results });
       });
