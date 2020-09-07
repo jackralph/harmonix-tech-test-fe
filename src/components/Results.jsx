@@ -26,7 +26,7 @@ class Results extends Component {
             timeToComplete,
           } = result;
           return (
-            <tr id={_id}>
+            <tr key={_id}>
               <td>{firstWord}</td>
               <td>{secondWord}</td>
               <td>
@@ -51,6 +51,15 @@ class Results extends Component {
     api.getResults().then((results) => {
       this.setState({ results, isLoading: false });
     });
+  }
+
+  componentDidUpdate(previousProps) {
+    const { orderDesc } = this.props;
+    if (orderDesc !== previousProps.orderDesc) {
+      api.getResults(orderDesc).then((results) => {
+        this.setState({ results });
+      });
+    }
   }
 }
 
