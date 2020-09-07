@@ -21,10 +21,14 @@ class Table extends Component {
     console.log(this.state);
   };
 
-  handleSubmit = (event) => {
+  handleSubmit = () => {
     const { firstWord, secondWord } = this.state;
-    api.newComparison(firstWord, secondWord);
-    this.setState({ firstWord: "", secondWord: "" });
+    if (firstWord.length === 0 || secondWord.length === 0) {
+      alert("Both fields are required for comparison");
+    } else {
+      api.newComparison(firstWord, secondWord);
+      this.setState({ firstWord: "", secondWord: "" });
+    }
   };
 
   render() {
