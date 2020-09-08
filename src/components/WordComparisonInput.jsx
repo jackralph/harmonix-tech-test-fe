@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import * as api from "../utils/api";
+import WordTextInput from "./WordTextInput";
+import WordSelectInput from "./WordSelectInput";
+import WordSubmitButton from "./WordSubmitButton";
 
 class WordComparisonInput extends Component {
   state = {
@@ -46,61 +49,13 @@ class WordComparisonInput extends Component {
     const { firstWord, secondWord } = this.state;
     return (
       <div>
-        <div
-          className='input-group input-group-sm mb-3'
-          style={{ width: "40%", margin: "auto" }}
-        >
-          <div className='input-group-prepend'>
-            <span className='input-group-text' id='inputGroup-sizing-sm'>
-              First word
-            </span>
-          </div>
-          <input
-            type='text'
-            name='firstWord'
-            value={firstWord}
-            className='form-control'
-            aria-label='Small'
-            aria-describedby='inputGroup-sizing-sm'
-            onChange={this.handleInput}
-          />
-        </div>
-        <div
-          className='input-group input-group-sm mb-3'
-          style={{ width: "40%", margin: "auto" }}
-        >
-          <div className='input-group-prepend'>
-            <span className='input-group-text' id='inputGroup-sizing-sm'>
-              Second word
-            </span>
-          </div>
-          <input
-            type='text'
-            name='secondWord'
-            value={secondWord}
-            className='form-control'
-            aria-label='Small'
-            aria-describedby='inputGroup-sizing-sm'
-            onChange={this.handleInput}
-          />
-        </div>
-        <select
-          className='form-control form-control-sm'
-          style={{ width: "40%", margin: "auto" }}
-          onChange={this.handleChange}
-        >
-          <option value=''>---select comparison---</option>
-          <option value='anagram'>Anagram</option>
-          <option value='palindrome'>Palindrome</option>
-        </select>
-        <button
-          type='submit'
-          className='btn btn-outline-secondary'
-          style={{ margin: "10px" }}
-          onClick={this.handleSubmit}
-        >
-          Submit comparison
-        </button>
+        <WordTextInput
+          firstWord={firstWord}
+          secondWord={secondWord}
+          handleInput={this.handleInput}
+        />
+        <WordSelectInput handleChange={this.handleChange} />
+        <WordSubmitButton handleSubmit={this.handleSubmit} />
       </div>
     );
   }
