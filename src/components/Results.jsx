@@ -44,7 +44,7 @@ class Results extends Component {
                 <td>
                   {" "}
                   {firstWordPalindrome && secondWordPalindrome
-                    ? `${firstWord} AND ${secondWord} are both palindromes`
+                    ? `${firstWord} & ${secondWord} are both palindromes`
                     : (firstWordPalindrome && `${firstWord} is a palindrome`) ||
                       (secondWordPalindrome && `${secondWord} is a palindrome`)}
                 </td>
