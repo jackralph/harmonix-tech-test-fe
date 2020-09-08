@@ -11,7 +11,16 @@ class Results extends Component {
     const { isLoading } = this.state;
     const { wordComparisons } = this.state.results;
 
-    if (isLoading) return <h1>Loading... </h1>;
+    if (isLoading)
+      return (
+        <>
+          <td></td>
+          <td></td>
+          <th>Loading comparison results... </th>
+          <td></td>
+          <td></td>
+        </>
+      );
 
     return (
       <tbody>
